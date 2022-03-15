@@ -54,7 +54,13 @@
       <input v-model="num2" type="number"></input>
       <span>=</span>
       <span>{{num1 + num2}}</span>
-      
+      <!-- v-model.lazy -->
+      <br>
+      <br>
+      <br>
+      <input type="text" v-model.lazy="lazy">
+      <p>{{lazy}}</p>
+
     </div>
 
     <script>
@@ -72,6 +78,7 @@
             renderHtml: "<h1>Hello World</h1>",
             num1: 0,
             num2: 0,
+            lazy: "",
           };
         },
       }).mount("#app");
