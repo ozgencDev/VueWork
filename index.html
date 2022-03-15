@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://unpkg.com/vue@3"></script>
+    <title>Document</title>
+    <style>
+      .bigText {
+        font-size: 50px;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="app">
+      <!-- V-model ile Two way data binding -->
+      <input v-model="message" type="text" />
+      <!-- v-if v-else-if v-else ile conditional rendering -->
+      <div v-if="message">Message Truthy</div>
+      <div v-else="message">Message Falsy</div>
+      <!-- V-model twdb -->
+      <p :class="'bigText'">{{ message }}</p>
+      <input v-model="list" type="checkbox" value="Ali" id="ali" />
+      <label for="ali">Ali</label>
+      <input v-model="list" type="checkbox" value="Veli" id="veli" />
+      <label for="veli">Veli</label>
+      <input v-model="list" type="checkbox" value="Ahmet" id="ahmet" />
+      <label for="ahmet">Ahmet</label>
+      <div>{{list}}</div>
+      <!-- V-for ile yineleme ve V-bind ile one way data binding -->
+      <ul>
+        <!-- Array ile -->
+        <!-- v-bind kısaltması = :attr -->
+        <li :class="'bigText'" v-for="item in list">{{ item }}</li>
+      </ul>
+      <ul>
+        <!-- Object ile -->
+        <li v-for="(value,key,index) in listObj">{{ key }} - {{ value }} - {{ index }}</li>
+      </ul>
+      <div>{{counter}}</div>
+      <!-- Longcut  v-on:click :) ternary ile -->
+      <button v-on:click="counter += 1">İncrease</button>
+      <!-- Shortcut @click ternary ile -->
+      <button @click="counter > 0 ? counter -= 1 : 0">Decrease</button>
+      <!-- v-html ile string olarak değil html olarak renderlanır -->
+      <div v-html="renderHtml"></div>
+      <!-- mustache ile yapılan şeyin aynısını yapar -->
+      <p v-text="message"></p>
+      <!-- yeniden renderlanmaz -->
+      <h2 v-once="message">{{message}}</h2>
+      <input v-model="num1" type="number"></input>
+      <span>+</span>
+      <input v-model="num2" type="number"></input>
+      <span>=</span>
+      <span>{{num1 + num2}}</span>
+      
+    </div>
+
+    <script>
+      Vue.createApp({
+        data() {
+          return {
+            message: "Test",
+            list: [],
+            listObj: {
+              sarah: "Sarah",
+              john: "John",
+              jane: "Jane",
+            },
+            counter: 0,
+            renderHtml: "<h1>Hello World</h1>",
+            num1: 0,
+            num2: 0,
+          };
+        },
+      }).mount("#app");
+    </script>
+  </body>
+</html>
