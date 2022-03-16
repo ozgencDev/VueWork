@@ -10,6 +10,10 @@
       .bigText {
         font-size: 50px;
       }
+      .box {
+        width: 100vw;
+        height: 100vh;
+      }
     </style>
   </head>
   <body>
@@ -60,6 +64,7 @@
       <br>
       <input type="text" v-model.lazy="lazy">
       <p>{{lazy}}</p>
+      <div @mousemove="xCoordinate" :style="{ backgroundColor: `hsl(${x}, 80%, 50%)`}" class="box"></div>
 
     </div>
 
@@ -68,6 +73,7 @@
         data() {
           return {
             message: "Test",
+            x: 0,
             list: [],
             listObj: {
               sarah: "Sarah",
@@ -81,6 +87,11 @@
             lazy: "",
           };
         },
+        methods: {
+          xCoordinate(e) {
+            this.x = e.clientX;
+          },
+        }
       }).mount("#app");
     </script>
   </body>
